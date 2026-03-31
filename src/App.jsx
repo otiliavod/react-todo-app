@@ -1,12 +1,19 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import TaskInput from "./components/TaskInput";
 import TaskList from "./components/TaskList";
 import FilterBar from "./components/FilterBar";
 
 function App() {
   const [task, setTask] = useState("");
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(() => {
+    const savedTasks = localStorage.getItem("tasks");
+    return savedTasks ? JSON.parse(savedTasks) : [];
+  });
   const [filter, setFilter] = useState("all");
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   const handleAddTask = () => {
     if (task.trim() === "") return;
