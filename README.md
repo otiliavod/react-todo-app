@@ -1,16 +1,35 @@
-# React + Vite
+# React To-Do App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern and clean To-Do application built with React as part of my learning journey.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Add tasks
+- Mark tasks as completed
+- Delete tasks
+- Live task statistics (total & completed)
+- Empty state UI
+- Responsive design
 
-## React Compiler
+## What I Learned
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+This project helped me understand:
 
-## Expanding the ESLint configuration
+- React fundamentals (components, props, state)
+- useState hook
+- Handling events (onClick, onChange)
+- Working with arrays (map, filter)
+- Updating state immutably
+- Component-based architecture
+- Passing functions as props
+- Basic UI/UX design
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## Getting Started
+
+### 1. Install dependencies
+
+```bash
+npm install
+
+Then open: http://localhost:5173
