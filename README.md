@@ -1,6 +1,8 @@
 # React To-Do App
 
-A modern and clean To-Do application built with React as part of my learning journey.
+A modern and clean To-Do application built with React as part of my learning journey. 
+
+Live server: https://react-learning-to-do-app.netlify.app/
 
 ## Features
 
