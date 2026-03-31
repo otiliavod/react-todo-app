@@ -10,10 +10,18 @@ function App() {
     return savedTasks ? JSON.parse(savedTasks) : [];
   });
   const [filter, setFilter] = useState("all");
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    const savedTheme = localStorage.getItem("theme");
+    return savedTheme === "dark";
+  });
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
+
+  useEffect(() => {
+    localStorage.setItem("theme", isDarkMode ? "dark" : "light");
+  }, [isDarkMode]);
 
   const handleAddTask = () => {
     if (task.trim() === "") return;
@@ -78,14 +86,23 @@ function App() {
   }, [tasks, filter]);
 
   return (
-      <div className="app">
+      <div className={`app ${isDarkMode ? "dark" : ""}`}>
         <div className="todo-card">
-          <div className="todo-header">
-            <p className="eyebrow">React Learning Project</p>
-            <h1>My To-Do App</h1>
-            <p className="subtitle">
-              A clean React app built with reusable components.
-            </p>
+          <div className="top-bar">
+            <div className="todo-header">
+              <p className="eyebrow">React Learning Project</p>
+              <h1>My To-Do App</h1>
+              <p className="subtitle">
+                A clean React app built with reusable components.
+              </p>
+            </div>
+
+            <button
+                className="theme-toggle"
+                onClick={() => setIsDarkMode(!isDarkMode)}
+            >
+              {isDarkMode ? "☀️ Light" : "🌙 Dark"}
+            </button>
           </div>
 
           <TaskInput
