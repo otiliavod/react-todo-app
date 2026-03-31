@@ -44,6 +44,19 @@ function App() {
     setTasks(updatedTasks);
   };
 
+  const handleEditTask = (idToEdit, newText) => {
+    if (newText.trim() === "") return;
+
+    const updatedTasks = tasks.map((item) => {
+      if (item.id === idToEdit) {
+        return { ...item, text: newText.trim() };
+      }
+      return item;
+    });
+
+    setTasks(updatedTasks);
+  };
+
   const handleClearCompleted = () => {
     const updatedTasks = tasks.filter((item) => !item.completed);
     setTasks(updatedTasks);
@@ -98,6 +111,7 @@ function App() {
               tasks={filteredTasks}
               onDeleteTask={handleDeleteTask}
               onToggleTask={handleToggleTask}
+              onEditTask={handleEditTask}
               emptyMessage={
                 filter === "all"
                     ? "No tasks yet."

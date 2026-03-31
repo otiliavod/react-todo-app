@@ -4,6 +4,7 @@ function TaskList({
                       tasks,
                       onDeleteTask,
                       onToggleTask,
+                      onEditTask,
                       emptyMessage,
                       emptySubtext,
                   }) {
@@ -24,6 +25,7 @@ function TaskList({
                     task={item}
                     onDeleteTask={onDeleteTask}
                     onToggleTask={onToggleTask}
+                    onEditTask={onEditTask}
                 />
             ))}
         </ul>
