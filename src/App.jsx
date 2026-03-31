@@ -1,17 +1,19 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import TaskInput from "./components/TaskInput";
 import TaskList from "./components/TaskList";
+import FilterBar from "./components/FilterBar";
 
 function App() {
   const [task, setTask] = useState("");
   const [tasks, setTasks] = useState([]);
+  const [filter, setFilter] = useState("all");
 
   const handleAddTask = () => {
     if (task.trim() === "") return;
 
     const newTask = {
       id: Date.now(),
-      text: task,
+      text: task.trim(),
       completed: false,
     };
 
@@ -35,7 +37,25 @@ function App() {
     setTasks(updatedTasks);
   };
 
+  const handleClearCompleted = () => {
+    const updatedTasks = tasks.filter((item) => !item.completed);
+    setTasks(updatedTasks);
+  };
+
   const completedTasksCount = tasks.filter((item) => item.completed).length;
+  const activeTasksCount = tasks.filter((item) => !item.completed).length;
+
+  const filteredTasks = useMemo(() => {
+    if (filter === "active") {
+      return tasks.filter((item) => !item.completed);
+    }
+
+    if (filter === "completed") {
+      return tasks.filter((item) => item.completed);
+    }
+
+    return tasks;
+  }, [tasks, filter]);
 
   return (
       <div className="app">
@@ -56,13 +76,35 @@ function App() {
 
           <div className="todo-stats">
             <span>Total: {tasks.length}</span>
+            <span>Active: {activeTasksCount}</span>
             <span>Completed: {completedTasksCount}</span>
           </div>
 
+          <FilterBar
+              currentFilter={filter}
+              onChangeFilter={setFilter}
+              onClearCompleted={handleClearCompleted}
+              hasCompletedTasks={completedTasksCount > 0}
+          />
+
           <TaskList
-              tasks={tasks}
+              tasks={filteredTasks}
               onDeleteTask={handleDeleteTask}
               onToggleTask={handleToggleTask}
+              emptyMessage={
+                filter === "all"
+                    ? "No tasks yet."
+                    : filter === "active"
+                        ? "No active tasks."
+                        : "No completed tasks."
+              }
+              emptySubtext={
+                filter === "all"
+                    ? "Add your first task to get started."
+                    : filter === "active"
+                        ? "Everything is completed. Nice work."
+                        : "Complete a task and it will appear here."
+              }
           />
         </div>
       </div>

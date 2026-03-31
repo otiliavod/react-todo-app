@@ -225,4 +225,76 @@ input {
   .delete-button {
     width: 100%;
   }
+
+  .filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-buttons {
+    width: 100%;
+  }
+
+  .filter-button,
+  .clear-button {
+    flex: 1;
+  }
+}
+.filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.filter-button {
+  border: 1px solid #d8dce6;
+  background: #ffffff;
+  color: #475569;
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.filter-button:hover {
+  transform: translateY(-1px);
+  border-color: #7c3aed;
+  color: #7c3aed;
+}
+
+.filter-button.active {
+  background: #7c3aed;
+  color: white;
+  border-color: #7c3aed;
+}
+
+.clear-button {
+  border: none;
+  background: #ede9fe;
+  color: #6d28d9;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.clear-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  background: #ddd6fe;
+}
+
+.clear-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }

@@ -1,11 +1,17 @@
 import TaskItem from "./TaskItem";
 
-function TaskList({ tasks, onDeleteTask, onToggleTask }) {
+function TaskList({
+                      tasks,
+                      onDeleteTask,
+                      onToggleTask,
+                      emptyMessage,
+                      emptySubtext,
+                  }) {
     if (tasks.length === 0) {
         return (
             <div className="empty-state">
-                <p>No tasks yet.</p>
-                <span>Add your first task to get started.</span>
+                <p>{emptyMessage}</p>
+                <span>{emptySubtext}</span>
             </div>
         );
     }
